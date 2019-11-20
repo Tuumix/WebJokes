@@ -5,8 +5,11 @@
  */
 package Servlet;
 
+import bd.dal.DALCurtida;
 import bd.dal.DALPiada;
+import bd.entidades.Curtida;
 import bd.entidades.Piada;
+import bd.entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,11 +41,18 @@ public class pontuacao extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             DALPiada dalP = new DALPiada();
+            DALCurtida dalC = new DALCurtida();
+            Usuario usu = new Usuario();
+            HttpSession session = request.getSession(false);
+            usu = (Usuario)session.getAttribute("usuario");
+            Curtida curte;
             String piada = "";
             ArrayList<Piada> lista = new ArrayList();
             int codigo = Integer.parseInt(request.getParameter("codigo"));
+            curte = new Curtida(codigo, usu.getCod());
             
             if (dalP.alterar(codigo)) {
+                dalC.salvar(curte);
                 lista.clear();
                 lista = dalP.carregaP();
                 for (int i = 0; i < lista.size(); i++) {
