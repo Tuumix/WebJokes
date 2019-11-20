@@ -51,7 +51,8 @@ public class DALPiada {
 
     public ArrayList<Piada> carrega_piadaUsu(int cod) {
         ArrayList<Piada> lista = new ArrayList();
-        String sql = "select * from piada where usu_cod = " + cod;
+        String sql = "select * from piada where usu_cod = " + cod + " order by pia_pontuacao desc";
+        System.out.println(""+sql);
         ResultSet rs = new Conexao().consultar(sql);
         //int cod, int pontucao, String titulo, String texto, String palchave, byte[] foto
         try {
@@ -82,7 +83,7 @@ public class DALPiada {
 
     public ArrayList<Piada> busca(String chave) {
         ArrayList<Piada> lista = new ArrayList();
-        String sql = "select * from piada where pia_palchave like '%" + chave + "%'";
+        String sql = "select * from piada where pia_palchave like '%" + chave + "%' order by pia_pontuacao desc";
         System.out.println("SQL:" + sql);
         ResultSet rs = new Conexao().consultar(sql);
         //int cod, int pontucao, String titulo, String texto, String palchave, byte[] foto
