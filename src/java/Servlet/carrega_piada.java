@@ -77,7 +77,6 @@ public class carrega_piada extends HttpServlet {
                     piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
                     piada += "<b>" + lista.get(i).getTitulo() + "</b><br>";
                     piada += "<p>" + lista.get(i).getTexto() + "</p><br>";
-                    piada += "<p>Pontuação:" + lista.get(i).getPontucao() + "</p><br>";
                     piada += "</div>";
                 }
             }
