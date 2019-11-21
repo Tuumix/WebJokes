@@ -48,13 +48,15 @@ public class carregapia_usu extends HttpServlet {
             usu = (Usuario) session.getAttribute("usuario");
 
             lista = dalP.carrega_piadaUsu(usu.getCod());
-            
+
             for (int i = 0; i < lista.size(); i++) {
                 cod = lista.get(i).getCod();
                 piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
-                piada += "<input class='input_data' value='" + lista.get(i).getTitulo() + "'><br>";
-                piada += "<input class='input_data' value='" + lista.get(i).getTexto() + "'><br>";
-                piada += "<input class='input_data' value='" + lista.get(i).getPontucao() + "'><br>";
+                piada += "<p>Titulo</p>";
+                piada += "<input class='input_data' value='" + lista.get(i).getTitulo() + "'>";
+                piada += "<p>Texto</p>";
+                piada += "<input class='input_data' value='" + lista.get(i).getTexto() + "'>";
+                piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
                 piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
                 piada += "</div>";
             }

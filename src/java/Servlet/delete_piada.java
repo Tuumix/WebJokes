@@ -5,9 +5,7 @@
  */
 package Servlet;
 
-import bd.dal.DALCurtida;
 import bd.dal.DALPiada;
-import bd.entidades.Curtida;
 import bd.entidades.Piada;
 import bd.entidades.Usuario;
 import java.io.IOException;
@@ -22,10 +20,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Aluno
+ * @author hiroshi
  */
-@WebServlet(name = "incrementa_pontos", urlPatterns = {"/incrementa_pontos"})
-public class incrementa_pontos extends HttpServlet {
+@WebServlet(name = "delete_piada", urlPatterns = {"/delete_piada"})
+public class delete_piada extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,37 +39,28 @@ public class incrementa_pontos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             DALPiada dalP = new DALPiada();
-            DALCurtida dalC = new DALCurtida();
-            Usuario usu = new Usuario();
-            HttpSession session = request.getSession(false);
-            usu = (Usuario) session.getAttribute("usuario");
-            Curtida curte;
             String piada = "";
+            int codigoP, cod;
+            codigoP = Integer.parseInt(request.getParameter("codigo"));
+            HttpSession session = request.getSession(false);
             ArrayList<Piada> lista = new ArrayList();
-            int codigo = Integer.parseInt(request.getParameter("codigo"));
-            curte = new Curtida(codigo, usu.getCod());
+            Usuario usu = (Usuario) session.getAttribute("usuario");
+            
+            dalP.apagar(codigoP);
 
-            if (dalP.alterar(codigo)) { //incrementando no banco
-                dalC.salvar(curte); //grava na tabela curtida
-                lista.clear();
-                lista = dalP.carregaP();
-                for (int i = 0; i < lista.size(); i++) {
-                    int cod = lista.get(i).getCod();
-                    piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
-                    piada += "<b>" + lista.get(i).getTitulo() + "</b><br>";
-                    piada += "<p>" + lista.get(i).getTexto() + "</p><br>";
-                    piada += "<p>Pontuação:" + lista.get(i).getPontucao() + "</p><br>";
-                    curte = dalC.getCurtida(lista.get(i).getCod(), usu.getCod());
+            lista = dalP.carrega_piadaUsu(usu.getCod());
 
-                    if (curte != null) {
-                        piada += "<button class=\"descurtir\" id=\"descurtir\" type=\"button\" value=\"" + cod + "\">Dislike</button>";
-                    } else {
-                        piada += "<button class=\"curtir\" id=\"curtir\" type=\"button\" value=\"" + cod + "\">Curtir</button>";
-                    }
-                    piada += "</div>";
-                }
-                out.println(piada);
+            for (int i = 0; i < lista.size(); i++) {
+                cod = lista.get(i).getCod();
+                piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
+                piada += "<p>Titulo</p>";
+                piada += "<input class='input_data' value='" + lista.get(i).getTitulo() + "'>";
+                piada += "<p>Texto</p>";
+                piada += "<input class='input_data' value='" + lista.get(i).getTexto() + "'>";
+                piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
+                piada += "</div>";
             }
+            out.println(piada);
         }
     }
 

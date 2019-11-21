@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var valid = false;
+
 function cadastra_piada() {
     $.ajax({
         url: "cadastra_pia",
@@ -24,15 +26,21 @@ $(document).ready(function () {
     });
 });
 
-$("body").on("click", "#alterar", function () {
+$("body").on("click", ".alterar", function () {
+    $(this).removeClass('alterar').addClass('confirmar');
+    $(this).text('confirmar');
+});
+
+$("body").on("click", ".confirmar", function () {
+    $(this).removeClass('alterar').addClass('confirmar');
     $.ajax({
-        url: "carrega_piada",
+        url: "delete_piada",
         type: "GET",
-        data: {"tipo": "alteracao", "codigo": $(this).val()},
+        data: {"codigo": $(this).val()},
         success: function (form) {
-            var str = form.split("#");
-            $('#titulo').val(str[0].toString());
-            $('#texto').val(str[1].toString());
+            $('#piada').empty();
+            $('#piada').append(form);
+            alert('Excluído com Sucesso!');
         }
     });
 });
