@@ -93,9 +93,21 @@ $("#foto").change(function () {
 
 $("#piada").on("click", "#curtir", function () {
     $.ajax({
-        url: "pontuacao",
+        url: "incrementa_pontos",
         type: "GET",
-        data: {"codigo": $(this).val()},
+        data: {codigo: $(this).val()},
+        success: function (form) {
+            $('#piada').empty();
+            $('#piada').append(form);
+        }
+    }); 
+});
+
+$("#piada").on("click", "#descurtir", function () {
+    $.ajax({
+        url: "decrementa_pontos",
+        type: "GET",
+        data: {codigo: $(this).val()},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);

@@ -35,7 +35,7 @@ public class DALPiada {
     public ArrayList<Piada> carregaP() {
         ArrayList<Piada> lista = new ArrayList();
         String sql = "select * from piada order by pia_pontuacao desc";
-        System.out.println(""+sql);
+        System.out.println("" + sql);
         ResultSet rs = new Conexao().consultar(sql);
         //int cod, int pontucao, String titulo, String texto, String palchave, byte[] foto
         try {
@@ -52,7 +52,7 @@ public class DALPiada {
     public ArrayList<Piada> carrega_piadaUsu(int cod) {
         ArrayList<Piada> lista = new ArrayList();
         String sql = "select * from piada where usu_cod = " + cod + " order by pia_pontuacao desc";
-        System.out.println(""+sql);
+        System.out.println("" + sql);
         ResultSet rs = new Conexao().consultar(sql);
         //int cod, int pontucao, String titulo, String texto, String palchave, byte[] foto
         try {
@@ -97,10 +97,15 @@ public class DALPiada {
         }
         return lista;
     }
-    
+
     public boolean alterar(int codigo) {
-     String sql = "update piada set pia_pontuacao = pia_pontuacao + 1 where pia_cod = " + codigo;
-     return new Conexao().manipular(sql);
-     }
+        String sql = "update piada set pia_pontuacao = pia_pontuacao + 1 where pia_cod = " + codigo;
+        return new Conexao().manipular(sql);
+    }
+
+    public boolean decrementa(int codigo, int cod_usu) {
+        String sql = "update piada set pia_pontuacao = pia_pontuacao - 1 where pia_cod = " + codigo + " and usu_cod = "+cod_usu;
+        return new Conexao().manipular(sql);
+    }
 
 }

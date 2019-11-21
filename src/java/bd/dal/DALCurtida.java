@@ -8,6 +8,8 @@ package bd.dal;
 import bd.entidades.Categoria;
 import bd.entidades.Curtida;
 import bd.util.Conexao;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,11 +21,28 @@ public class DALCurtida {
         String sql = "insert into curtidas (codigo_piada,codigo_usu) values ($1,$2)";
         sql = sql.replace("$1", c.getCodigo_piada() + "");
         sql = sql.replace("$2", c.getCodigo_usuario() + "");
-        System.out.println(""+sql);
+        System.out.println("" + sql);
         return new Conexao().manipular(sql);
     }
 
     public boolean apagar(int id) {
-        return new Conexao().manipular("delete from curtidas where codigo_piada=" + id);
+        return new Conexao().manipular("delete from curtidas where codigo_piada = " + id);
+    }
+
+    public Curtida getCurtida(int codigoP, int codigoU) {
+        Curtida curtida = null;
+        String sql = "select * from curtidas where codigo_piada = $1 and codigo_usu = $2";
+        sql = sql.replace("$1", codigoP + "");
+        sql = sql.replace("$2", codigoU + "");
+        System.out.println(""+sql);
+        ResultSet rs = new Conexao().consultar(sql);
+        try {
+            while (rs.next()) {
+                curtida = new Curtida(rs.getInt("codigo_piada"), rs.getInt("codigo_usu"));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return curtida;
     }
 }

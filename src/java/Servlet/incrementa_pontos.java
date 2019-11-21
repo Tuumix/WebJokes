@@ -22,10 +22,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author hiroshi
+ * @author Aluno
  */
-@WebServlet(name = "carrega_piada", urlPatterns = {"/carrega_piada"})
-public class carrega_piada extends HttpServlet {
+@WebServlet(name = "incrementa_pontos", urlPatterns = {"/incrementa_pontos"})
+public class incrementa_pontos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,23 +40,23 @@ public class carrega_piada extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String tipo = "";
-            int cod;
-            tipo = request.getParameter("tipo");
-            HttpSession session = request.getSession(false);
-            Usuario usu = new Usuario();
-            Curtida curte = new Curtida();
             DALPiada dalP = new DALPiada();
             DALCurtida dalC = new DALCurtida();
+            Usuario usu = new Usuario();
+            HttpSession session = request.getSession(false);
+            usu = (Usuario) session.getAttribute("usuario");
+            Curtida curte;
             String piada = "";
             ArrayList<Piada> lista = new ArrayList();
-            usu = (Usuario) session.getAttribute("usuario");
+            int codigo = Integer.parseInt(request.getParameter("codigo"));
+            curte = new Curtida(codigo, usu.getCod());
 
-            if (usu != null) {
-                usu = (Usuario) session.getAttribute("usuario");
-                lista = dalP.carrega_piadaUsu(usu.getCod());
+            if (dalP.alterar(codigo)) { //incrementando no banco
+                dalC.salvar(curte); //grava na tabela curtida
+                lista.clear();
+                lista = dalP.carregaP();
                 for (int i = 0; i < lista.size(); i++) {
-                    cod = lista.get(i).getCod();
+                    int cod = lista.get(i).getCod();
                     piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
                     piada += "<p>Titulo:" + lista.get(i).getTitulo() + "</p><br>";
                     piada += "<p>Piada:" + lista.get(i).getTexto() + "</p><br>";
@@ -70,20 +70,8 @@ public class carrega_piada extends HttpServlet {
                     }
                     piada += "</div>";
                 }
-            } else {
-                lista = dalP.carregaP();
-
-                for (int i = 0; i < lista.size(); i++) {
-                    cod = lista.get(i).getCod();
-                    piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
-                    piada += "<p>Titulo:" + lista.get(i).getTitulo() + "</p><br>";
-                    piada += "<p>Piada:" + lista.get(i).getTexto() + "</p><br>";
-                    piada += "<p>Pontuação:" + lista.get(i).getPontucao() + "</p><br>";
-                    piada += "</div>";
-                }
+                out.println(piada);
             }
-            out.println(piada);
-
         }
     }
 

@@ -22,10 +22,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Aluno
+ * @author Hiroshi
  */
-@WebServlet(name = "pontuacao", urlPatterns = {"/pontuacao"})
-public class pontuacao extends HttpServlet {
+@WebServlet(name = "decrementa_pontos", urlPatterns = {"/decrementa_pontos"})
+public class decrementa_pontos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,15 +44,14 @@ public class pontuacao extends HttpServlet {
             DALCurtida dalC = new DALCurtida();
             Usuario usu = new Usuario();
             HttpSession session = request.getSession(false);
-            usu = (Usuario)session.getAttribute("usuario");
-            Curtida curte;
+            usu = (Usuario) session.getAttribute("usuario");
+            Curtida curte = new Curtida();
             String piada = "";
             ArrayList<Piada> lista = new ArrayList();
             int codigo = Integer.parseInt(request.getParameter("codigo"));
-            curte = new Curtida(codigo, usu.getCod());
-            
-            if (dalP.alterar(codigo)) {
-                dalC.salvar(curte);
+
+            if (dalP.decrementa(codigo, usu.getCod())) { //incrementando no banco
+                dalC.apagar(codigo);
                 lista.clear();
                 lista = dalP.carregaP();
                 for (int i = 0; i < lista.size(); i++) {
@@ -61,7 +60,13 @@ public class pontuacao extends HttpServlet {
                     piada += "<p>Titulo:" + lista.get(i).getTitulo() + "</p><br>";
                     piada += "<p>Piada:" + lista.get(i).getTexto() + "</p><br>";
                     piada += "<p>Pontuação:" + lista.get(i).getPontucao() + "</p><br>";
-                    piada += "<button class=\"curtir\" id=\"curtir\" type=\"button\" value=\"" + cod + "\">Curtir</button>";
+                    curte = dalC.getCurtida(lista.get(i).getCod(), usu.getCod());
+
+                    if (curte != null) {
+                        piada += "<button class=\"descurtir\" id=\"descurtir\" type=\"button\" value=\"" + cod + "\">Dislike</button>";
+                    } else {
+                        piada += "<button class=\"curtir\" id=\"curtir\" type=\"button\" value=\"" + cod + "\">Curtir</button>";
+                    }
                     piada += "</div>";
                 }
                 out.println(piada);
