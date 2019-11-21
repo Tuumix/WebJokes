@@ -148,8 +148,15 @@ input[type=button]{
     border-radius: 20px 20px;
 }
 
-
 ::-webkit-input-placeholder {
     color:lightcyan;
+}
+
+p{
+    font-size: 25px;
+}
+
+b{
+    font-size: 30px;
 }
 

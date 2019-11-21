@@ -100,12 +100,24 @@ $("#piada").on("click", "#curtir", function () {
             $('#piada').empty();
             $('#piada').append(form);
         }
-    }); 
+    });
 });
 
 $("#piada").on("click", "#descurtir", function () {
     $.ajax({
         url: "decrementa_pontos",
+        type: "GET",
+        data: {codigo: $(this).val()},
+        success: function (form) {
+            $('#piada').empty();
+            $('#piada').append(form);
+        }
+    });
+});
+
+$("#div-btn-categoria").on("click", "#btn-cat", function () {
+    $.ajax({
+        url: "carrega_piada_categoria",
         type: "GET",
         data: {codigo: $(this).val()},
         success: function (form) {

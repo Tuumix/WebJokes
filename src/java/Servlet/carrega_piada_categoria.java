@@ -5,7 +5,9 @@
  */
 package Servlet;
 
+import bd.dal.DALCurtida;
 import bd.dal.DALPiada;
+import bd.entidades.Curtida;
 import bd.entidades.Piada;
 import bd.entidades.Usuario;
 import java.io.IOException;
@@ -22,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Hiroshi
  */
-@WebServlet(name = "buscapiada", urlPatterns = {"/buscapiada"})
-public class buscapiada extends HttpServlet {
+@WebServlet(name = "carrega_piada_categoria", urlPatterns = {"/carrega_piada_categoria"})
+public class carrega_piada_categoria extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,29 +40,37 @@ public class buscapiada extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            DALPiada dalP = new DALPiada();
-            Usuario usu = new Usuario();
-            String chave = "", piada = "";
-            int cod;
-            ArrayList<Piada> lista = new ArrayList();
+            int cod, codigoC;
             HttpSession session = request.getSession(false);
+            Usuario usu = new Usuario();
+            Curtida curte = new Curtida();
+            DALPiada dalP = new DALPiada();
+            DALCurtida dalC = new DALCurtida();
+            String piada = "";
+            ArrayList<Piada> lista = new ArrayList();
             usu = (Usuario) session.getAttribute("usuario");
-            chave = request.getParameter("chave");
-
-            lista = dalP.busca(chave);
+            codigoC = Integer.parseInt(request.getParameter("codigo"));
+            
             if (usu != null) {
+                lista = dalP.carregaP_Categoria(codigoC);
                 for (int i = 0; i < lista.size(); i++) {
                     cod = lista.get(i).getCod();
                     piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
                     piada += "<b>" + lista.get(i).getTitulo() + "</b><br>";
                     piada += "<p>" + lista.get(i).getTexto() + "</p><br>";
                     piada += "<p>Pontuação:" + lista.get(i).getPontucao() + "</p><br>";
-                    piada += "<button class=\"curtir\" id=\"curtir\" type=\"button\" value=\"" + cod + "\">Curtir</button>";
+                    curte = dalC.getCurtida(lista.get(i).getCod(), usu.getCod());
+
+                    if (curte != null) {
+                        piada += "<button class=\"descurtir\" id=\"descurtir\" type=\"button\" value=\"" + cod + "\">Dislike</button>";
+                    } else {
+                        piada += "<button class=\"curtir\" id=\"curtir\" type=\"button\" value=\"" + cod + "\">Curtir</button>";
+                    }
                     piada += "</div>";
                 }
             } else {
+                lista = dalP.carregaP_Categoria(codigoC);
                 for (int i = 0; i < lista.size(); i++) {
-                    cod = lista.get(i).getCod();
                     piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
                     piada += "<b>" + lista.get(i).getTitulo() + "</b><br>";
                     piada += "<p>" + lista.get(i).getTexto() + "</p><br>";

@@ -31,7 +31,7 @@ public class cadastra_pia extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(true);
-            Piada pia;
+            Piada pia; int codigoC;
             String titulo, texto, chave, email, senha;
             DALPiada dalpia = new DALPiada();
             Usuario usuario = new Usuario();
@@ -40,11 +40,11 @@ public class cadastra_pia extends HttpServlet {
             titulo = request.getParameter("titulo");
             texto = request.getParameter("texto");
             chave = request.getParameter("chave");
+            codigoC = Integer.parseInt(request.getParameter("cbbox"));
             DALUsuario usu = new DALUsuario();
 
             int cod = usu.getCod(usuario.getEmail());
-            System.out.println("" + cod + titulo + chave);
-            pia = new Piada(0, cod, 0, titulo, texto, chave, null);
+            pia = new Piada(0, cod, codigoC, titulo, texto, chave, null);
 
             if (dalpia.salvar(pia)) {
                 try {

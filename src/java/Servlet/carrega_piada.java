@@ -54,12 +54,12 @@ public class carrega_piada extends HttpServlet {
 
             if (usu != null) {
                 usu = (Usuario) session.getAttribute("usuario");
-                lista = dalP.carrega_piadaUsu(usu.getCod());
+                lista = dalP.carregaP();
                 for (int i = 0; i < lista.size(); i++) {
                     cod = lista.get(i).getCod();
                     piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
-                    piada += "<p>Titulo:" + lista.get(i).getTitulo() + "</p><br>";
-                    piada += "<p>Piada:" + lista.get(i).getTexto() + "</p><br>";
+                    piada += "<b>" + lista.get(i).getTitulo() + "</b><br>";
+                    piada += "<p>" + lista.get(i).getTexto() + "</p><br>";
                     piada += "<p>Pontuação:" + lista.get(i).getPontucao() + "</p><br>";
                     curte = dalC.getCurtida(lista.get(i).getCod(), usu.getCod());
 
@@ -72,12 +72,11 @@ public class carrega_piada extends HttpServlet {
                 }
             } else {
                 lista = dalP.carregaP();
-
                 for (int i = 0; i < lista.size(); i++) {
                     cod = lista.get(i).getCod();
                     piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
-                    piada += "<p>Titulo:" + lista.get(i).getTitulo() + "</p><br>";
-                    piada += "<p>Piada:" + lista.get(i).getTexto() + "</p><br>";
+                    piada += "<b>" + lista.get(i).getTitulo() + "</b><br>";
+                    piada += "<p>" + lista.get(i).getTexto() + "</p><br>";
                     piada += "<p>Pontuação:" + lista.get(i).getPontucao() + "</p><br>";
                     piada += "</div>";
                 }

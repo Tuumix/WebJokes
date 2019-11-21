@@ -21,7 +21,7 @@
     </header>
     <main class="main-cad-piadas" >
         <form action="cadastra_pia" method="POST" enctype="multipart/form-data">
-            <select class="cbbox" style="width: 30%;height: 30px;margin-bottom: 30px;">
+            <select name="cbbox" style="width: 30%;height: 30px;margin-bottom: 30px;">
                 <%
                     DALCategoria dalC = new DALCategoria();
                     ArrayList<Categoria> listC = new ArrayList<>();

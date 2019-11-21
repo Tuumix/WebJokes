@@ -38,19 +38,19 @@
                 </div>
             </div>
             <div class="menu-botoes" style="display: flex;align-content: center;align-content: center;flex-direction: row;width: 60%;height: 550px;">
-                <div style="background-color: #2f3640;width: 40%;height: 600px; overflow: auto;">
+                <div id="div-btn-categoria" style="background-color: #2f3640;width: 40%;height: 600px; overflow: auto;">
                     <%
                         DALCategoria dalC = new DALCategoria();
                         ArrayList<Categoria> listaC = new ArrayList();
                         listaC = dalC.getCategorias("");
 
                         for (int i = 0; i < listaC.size(); i++) {
-                            out.println("<button style='border: none;width: 100%;height: 70px;font-size: 30px; background-color:#ced6e0;' value='"+ listaC.get(i).getCod()+"'>" + listaC.get(i).getTitulo() + "</button>");
+                            out.println("<button type=\"button\" id=\"btn-cat\" style='border: none;width: 100%;height: 70px;font-size: 30px; background-color:#ced6e0;' value='"+ listaC.get(i).getCod()+"'>" + listaC.get(i).getTitulo() + "</button>");
                         }
                     %>
                 </div>
                 <div style="background-color: #dfe6e9;width: 70%;height: 600px;overflow: auto;border: 2px;">
-                    <div id="piada">
+                    <div style="margin-top: 10px;" id="piada">
                     </div>
                 </div>
             </div>

@@ -34,7 +34,6 @@ public class DALCurtida {
         String sql = "select * from curtidas where codigo_piada = $1 and codigo_usu = $2";
         sql = sql.replace("$1", codigoP + "");
         sql = sql.replace("$2", codigoU + "");
-        System.out.println(""+sql);
         ResultSet rs = new Conexao().consultar(sql);
         try {
             while (rs.next()) {
