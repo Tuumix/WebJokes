@@ -17,6 +17,7 @@ public class Conexao {
     public Conexao() {
         this("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/", "piadas", "postgres", "postgres123");
     }
+   
 
     public Conexao(String driver, String local, String banco, String usuario, String senha) {
         try {

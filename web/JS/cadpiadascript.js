@@ -18,9 +18,11 @@ function cadastra_piada() {
 
 $(document).ready(function () {
     $.ajax({
-        url: "carregapia_usu",
+        url: "servlet_piada",
         type: "GET",
+        data:{"tipo":"carrega_piaUsu"},
         success: function (form) {
+            $('#piada').empty();
             $('#piada').append(form);
         }
     });
@@ -34,9 +36,22 @@ $("body").on("click", ".alterar", function () {
 $("body").on("click", ".confirmar", function () {
     $(this).removeClass('alterar').addClass('confirmar');
     $.ajax({
-        url: "delete_piada",
+        url: "servlet_piada",
         type: "GET",
-        data: {"codigo": $(this).val()},
+        data: {"codigo": $(this).val(),"tipo":"deleta_pia"},
+        success: function (form) {
+            $('#piada').empty();
+            $('#piada').append(form);
+            alert('Excluído com Sucesso!');
+        }
+    });
+});
+
+$("body").on("click", ".deletar", function () {
+    $.ajax({
+        url: "servlet_piada",
+        type: "GET",
+        data: {"codigo": $(this).val(),"tipo":"deleta_pia"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
@@ -49,3 +64,18 @@ function red_index()
 {
     window.location.replace("index.jsp");
 }
+
+$("#piadaimg").click(function (e) {
+    $("#fotoP").click();
+});
+
+function fasterPreview(uploader) {
+    if (uploader.files && uploader.files[0]) {
+        $('#piadaimg').attr('src',
+                window.URL.createObjectURL(uploader.files[0]));
+    }
+}
+
+$("#fotoP").change(function () {
+    fasterPreview(this);
+});

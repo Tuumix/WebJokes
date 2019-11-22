@@ -34,6 +34,7 @@ public class DALCategoria
     
     public ArrayList<Categoria> getCategorias(String filtro) {
         ArrayList<Categoria> lista = new ArrayList();
+        Conexao conect = new Conexao();
         String sql = "select * from categoria";
         if (!filtro.isEmpty()) {
             sql += " where " + filtro;
@@ -44,6 +45,7 @@ public class DALCategoria
                 lista.add(
                         new Categoria(rs.getInt("cat_cod"), rs.getString("cat_titulo")));
             }
+            
         } catch (Exception e) {
             System.out.println(e);
         }

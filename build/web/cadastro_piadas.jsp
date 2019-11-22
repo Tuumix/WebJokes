@@ -21,7 +21,12 @@
     </header>
     <main class="main-cad-piadas" >
         <form action="cadastra_pia" method="POST" enctype="multipart/form-data">
-            <select name="cbbox" style="width: 30%;height: 30px;margin-bottom: 30px;">
+            <div id="piada-container" style="display: flex;align-items: center;align-content: center;justify-content: center; margin-top: 15px;">
+                <image id="piadaimg" src="https://thewondrous.com/wp-content/uploads/2015/09/funny-clean-short-jokes.jpg" />
+            </div>
+            <input type="file" name="foto" id="fotoP">
+
+            <select name="cbbox" style="width: 30%;height: 30px;margin-top: 20px;">
                 <%
                     DALCategoria dalC = new DALCategoria();
                     ArrayList<Categoria> listC = new ArrayList<>();
@@ -34,9 +39,8 @@
             </select>
             <input id="titulo" name="titulo" class="input_data" type="text" placeholder="Título">
             <textarea id="texto" name="texto" class="input_data" placeholder="Texto"></textarea>
-            <input name="chave" class="input_data" type="text" placeholder="Palavras chave">
+            <input name="chave" class="input_data" type="text" placeholder="Palavras chave Ex: loira#!inteligente">
             <button class="btn btn-outline-success">Cadastrar</button>
-            <input type="file" name="foto" id="foto">
             <br><br>
         </form>
         <div id="piada" style="width: 50%;height: 50vh;background-color: lightslategray;overflow:auto;">

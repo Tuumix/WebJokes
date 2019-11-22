@@ -5,11 +5,9 @@
  */
 package bd.dal;
 
-import bd.entidades.Categoria;
 import bd.entidades.Curtida;
 import bd.util.Conexao;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  *
@@ -25,8 +23,8 @@ public class DALCurtida {
         return new Conexao().manipular(sql);
     }
 
-    public boolean apagar(int id) {
-        return new Conexao().manipular("delete from curtidas where codigo_piada = " + id);
+    public boolean apagar(int id, int codigo_usu) {
+        return new Conexao().manipular("delete from curtidas where codigo_piada = " + id + " and codigo_usu = "+codigo_usu);
     }
 
     public Curtida getCurtida(int codigoP, int codigoU) {

@@ -118,7 +118,8 @@ public class DALPiada {
     }
 
     public boolean decrementa(int codigo, int cod_usu) {
-        String sql = "update piada set pia_pontuacao = pia_pontuacao - 1 where pia_cod = " + codigo + " and usu_cod = " + cod_usu + "";
+        String sql = "update piada set pia_pontuacao = pia_pontuacao - 1 where pia_cod = " + codigo;
+        System.out.println(""+sql);
         return new Conexao().manipular(sql);
     }
 

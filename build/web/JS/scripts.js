@@ -19,7 +19,7 @@ function red_piada()
 
 $(document).ready(function () {
     $.ajax({
-        url: "carrega_piada",
+        url: "servlet_piada",
         type: "GET",
         data: {"tipo": "onload"},
         success: function (form) {
@@ -66,7 +66,7 @@ function excluir_usuario() {
 
 function buscar_piada() {
     $.ajax({
-        url: "buscapiada",
+        url: "servlet_piada",
         type: "GET",
         data: {chave: $('#chave').val(), "tipo": "pesq_piada"},
         success: function (form) {
@@ -93,9 +93,9 @@ $("#foto").change(function () {
 
 $("#piada").on("click", "#curtir", function () {
     $.ajax({
-        url: "incrementa_pontos",
+        url: "servlet_piada",
         type: "GET",
-        data: {codigo: $(this).val()},
+        data: {codigo: $(this).val(),"tipo":"curtir"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
@@ -105,9 +105,9 @@ $("#piada").on("click", "#curtir", function () {
 
 $("#piada").on("click", "#descurtir", function () {
     $.ajax({
-        url: "decrementa_pontos",
+        url: "servlet_piada",
         type: "GET",
-        data: {codigo: $(this).val()},
+        data: {codigo: $(this).val(),"tipo":"descurtir"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
@@ -117,9 +117,9 @@ $("#piada").on("click", "#descurtir", function () {
 
 $("#div-btn-categoria").on("click", "#btn-cat", function () {
     $.ajax({
-        url: "carrega_piada_categoria",
+        url: "servlet_piada",
         type: "GET",
-        data: {codigo: $(this).val()},
+        data: {"codigo_cat": $(this).val(),"tipo":"busc_categoria"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
