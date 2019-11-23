@@ -20,8 +20,9 @@ $(document).ready(function () {
     $.ajax({
         url: "servlet_piada",
         type: "GET",
-        data:{"tipo":"carrega_piaUsu"},
+        data: {"tipo": "carrega_piaUsu"},
         success: function (form) {
+            alert(form);
             $('#piada').empty();
             $('#piada').append(form);
         }
@@ -38,7 +39,7 @@ $("body").on("click", ".confirmar", function () {
     $.ajax({
         url: "servlet_piada",
         type: "GET",
-        data: {"codigo": $(this).val(),"tipo":"deleta_pia"},
+        data: {"codigo": $(this).val(), "tipo": "deleta_pia"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
@@ -51,7 +52,7 @@ $("body").on("click", ".deletar", function () {
     $.ajax({
         url: "servlet_piada",
         type: "GET",
-        data: {"codigo": $(this).val(),"tipo":"deleta_pia"},
+        data: {"codigo": $(this).val(), "tipo": "deleta_pia"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);

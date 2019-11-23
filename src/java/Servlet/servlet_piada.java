@@ -11,6 +11,7 @@ import bd.entidades.Curtida;
 import bd.entidades.Piada;
 import bd.entidades.Usuario;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -60,7 +61,8 @@ public class servlet_piada extends HttpServlet {
                 out.println(busca_categoria(usu, codigo_cat));
             }
             if (tipo.equals("carrega_piaUsu")) {
-                out.println(carrega_piadaUser(usu));
+                String path = getServletContext().getRealPath("/") + "/" + "fotos_piadas/" + "$1" + ".jpg";
+                out.println(carrega_piadaUser(usu, path));
             }
 
             if (tipo.equals("deleta_pia")) {
@@ -196,24 +198,36 @@ public class servlet_piada extends HttpServlet {
         return piada;
     }
 
-    public String carrega_piadaUser(Usuario usu) {
+    public String carrega_piadaUser(Usuario usu, String path) {
         DALPiada dalP = new DALPiada();
         int cod;
         String piada = "";
         ArrayList<Piada> lista = new ArrayList();
 
         lista = dalP.carrega_piadaUsu(usu.getCod());
-
         for (int i = 0; i < lista.size(); i++) {
             cod = lista.get(i).getCod();
-            piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
+            path = path.replace("$1", lista.get(i).getCod()+"");
+            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;\">";
+            piada += "<div style=\"display: flex;flex-direction: column;align-content: flex-start;width: 40%;height: 30vh;\">";
+
             piada += "<p>Titulo</p>";
             piada += "<input class='input_data' value='" + lista.get(i).getTitulo() + "'>";
             piada += "<p>Texto</p>";
             piada += "<input class='input_data' value='" + lista.get(i).getTexto() + "'>";
+            piada += "<div style=\"display:flex;align-items:center:flex-direction:column;\">"; //3
             piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
             piada += "<button class=\"deletar\" id=\"deletar\" type=\"button\" value=\"" + cod + "\">Excluir</button>";
+
+            piada += "</div>"; //3
             piada += "</div>";
+            piada += "<div style=\"display:flex:align-items:center;align-contest:center;width:70%; height:30vh;\">";
+            /*piada += "                <div id=\"profile-container\" style=\"margin-bottom: 20px;\">\n"
+                    + "                    <image id=\"profileImage\" src=\""+path+"\" />\n"
+                    + "               </div>";*/
+            piada += "</div>";
+            piada += "</div>"; //3
+            path = path.replace(lista.get(i).getCat_cod()+"", "$1");
         }
         return piada;
     }
@@ -233,6 +247,8 @@ public class servlet_piada extends HttpServlet {
             piada += "<p>Texto</p>";
             piada += "<input class='input_data' value='" + lista.get(i).getTexto() + "'>";
             piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
+            piada += "<button class=\"deletar\" id=\"deletar\" type=\"button\" value=\"" + cod + "\">Excluir</button>";
+
             piada += "</div>";
         }
         return piada;

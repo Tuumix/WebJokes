@@ -43,7 +43,8 @@
             <button class="btn btn-outline-success">Cadastrar</button>
             <br><br>
         </form>
-        <div id="piada" style="width: 50%;height: 50vh;background-color: lightslategray;overflow:auto;">
+        <div id="piada" style="display: flex;align-content: center;align-content: center;flex-direction: column;width: 50%;height: 50vh;background-color: lightslategray;overflow:auto;">
+            <div id="piada"></div>
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
