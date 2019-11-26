@@ -3,14 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hiroshi/Desktop/web_piada-master/web/cadastro_piadas.jsp</file>
-            <file>file:/C:/Users/Hiroshi/Desktop/web_piada-master/web/JS/scripts.js</file>
-            <file>file:/C:/Users/Hiroshi/Desktop/web_piada-master/src/java/Servlet/carrega_piada.java</file>
-            <file>file:/C:/Users/Hiroshi/Desktop/web_piada-master/src/java/Servlet/buscapiada.java</file>
-            <file>file:/C:/Users/Hiroshi/Desktop/web_piada-master/web/index.jsp</file>
-            <file>file:/C:/Users/Hiroshi/Desktop/web_piada-master/src/java/Servlet/pontuacao.java</file>
-            <file>file:/C:/Users/Hiroshi/Desktop/web_piada-master/web/JS/cadpiadascript.js</file>
-            <file>file:/C:/Users/Hiroshi/Desktop/web_piada-master/src/java/Servlet/carregapia_usu.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/web/JS/scripts.js</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/web/index.jsp</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/web/formulario.html</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/Servlet/cadastra_usu.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/web/JS/cadpiadascript.js</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/bd/dal/DALUsuario.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/bd/dal/DALCurtida.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/web/tela_login.html</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/web/CSS/inicial.css</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/Servlet/servlet_piada.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/Servlet/cadastra_pia.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/web/CSS/formcss.css</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/web/cadastro_piadas.jsp</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/bd/dal/DALCategoria.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/Servlet/excluir_usuario.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/Servlet/valida_sessao.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/bd/dal/DALPiada.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/bd/util/Conexao.java</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/Hiroshi/Documents/Faculdade/FerroIV/WebJokes/src/java/bd/entidades/Piada.java</file>
         </group>
     </open-files>
 </project-private>

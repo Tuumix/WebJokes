@@ -207,27 +207,41 @@ public class servlet_piada extends HttpServlet {
         lista = dalP.carrega_piadaUsu(usu.getCod());
         for (int i = 0; i < lista.size(); i++) {
             cod = lista.get(i).getCod();
-            path = path.replace("$1", lista.get(i).getCod()+"");
-            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;\">";
-            piada += "<div style=\"display: flex;flex-direction: column;align-content: flex-start;width: 40%;height: 30vh;\">";
+            path = path.replace("$1", lista.get(i).getCod() + "");
+            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;margin-right:10px;\">";
+            piada += "<div style=\"display: flex;flex-direction: column;align-content: center;justify-content:center;align-items:center;width: 50%;height: 25vh;border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;\">";
 
-            piada += "<p>Titulo</p>";
-            piada += "<input class='input_data' value='" + lista.get(i).getTitulo() + "'>";
-            piada += "<p>Texto</p>";
-            piada += "<input class='input_data' value='" + lista.get(i).getTexto() + "'>";
+            piada += "<div class=\"input-group mb-3\" style=\"width:350px;\">"
+                    + "  <div class=\"input-group-prepend\">"
+                    + "    <span class=\"input-group-text\" id=\"basic-addon3\">Titulo</span>"
+                    + "  </div>"
+                    + "  <input type=\"text\" class=\"form-control\" id=\"titulo\" aria-describedby=\"basic-addon3\" value=\"" + lista.get(i).getTitulo() + "\" disable>"
+                    + "</div>";
+
+            piada += "<div class=\"input-group\" style=\"width:350px;margin-bottom:30px;\">"
+                    + "  <div class=\"input-group-prepend\">"
+                    + "    <span class=\"input-group-text\">Piada</span>"
+                    + "  </div>"
+                    + "  <textarea class=\"form-control\" id=\"texto\" aria-label=\"With textarea\" disable>" + lista.get(i).getTexto() + "</textarea>"
+                    + "</div>";
+
+            piada += "<div class=\"input-group mb-3\" style=\"width:350px;\">"
+                    + "  <div class=\"input-group-prepend\">"
+                    + "    <span class=\"input-group-text\" id=\"basic-addon3\">Palavra Chave</span>"
+                    + "  </div>"
+                    + "  <input type=\"text\" class=\"form-control\" id=\"pal-chave\" aria-describedby=\"basic-addon3\" value=\"" + lista.get(i).getPalchave()+ "\" disable>"
+                    + "</div>";
+
             piada += "<div style=\"display:flex;align-items:center:flex-direction:column;\">"; //3
             piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
             piada += "<button class=\"deletar\" id=\"deletar\" type=\"button\" value=\"" + cod + "\">Excluir</button>";
-
-            piada += "</div>"; //3
             piada += "</div>";
-            piada += "<div style=\"display:flex:align-items:center;align-contest:center;width:70%; height:30vh;\">";
             /*piada += "                <div id=\"profile-container\" style=\"margin-bottom: 20px;\">\n"
                     + "                    <image id=\"profileImage\" src=\""+path+"\" />\n"
                     + "               </div>";*/
             piada += "</div>";
             piada += "</div>"; //3
-            path = path.replace(lista.get(i).getCat_cod()+"", "$1");
+            path = path.replace(lista.get(i).getCat_cod() + "", "$1");
         }
         return piada;
     }
@@ -241,15 +255,30 @@ public class servlet_piada extends HttpServlet {
         lista = dalP.carrega_piadaUsu(usu.getCod());
         for (int i = 0; i < lista.size(); i++) {
             cod = lista.get(i).getCod();
-            piada += "<div style=\"width: 40%; border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;margin-left: 30px;\">";
-            piada += "<p>Titulo</p>";
-            piada += "<input class='input_data' value='" + lista.get(i).getTitulo() + "'>";
-            piada += "<p>Texto</p>";
-            piada += "<input class='input_data' value='" + lista.get(i).getTexto() + "'>";
+            cod = lista.get(i).getCod();
+            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;margin-right:10px;\">";
+            piada += "<div style=\"display: flex;flex-direction: column;align-content: flex-start;width: 40%;height: 30vh;\">";
+
+            piada += "<div class=\"input-group mb-3\">\n"
+                    + "  <div class=\"input-group-prepend\">\n"
+                    + "    <span class=\"input-group-text\" id=\"basic-addon3\">Titulo</span>\n"
+                    + "  </div>\n"
+                    + "  <input type=\"text\" class=\"form-control\" id=\"basic-url\" aria-describedby=\"basic-addon3\" value=\"" + lista.get(i).getTitulo() + "\">\n"
+                    + "</div>";
+
+            piada += "<div class=\"input-group\">\n"
+                    + "  <div class=\"input-group-prepend\">\n"
+                    + "    <span class=\"input-group-text\">Piada</span>\n"
+                    + "  </div>\n"
+                    + "  <textarea class=\"form-control\" aria-label=\"With textarea\">" + lista.get(i).getTexto() + "</textarea>\n"
+                    + "</div>";
+            piada += "<div style=\"display:flex;align-items:center:flex-direction:column;\">"; //3
             piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
             piada += "<button class=\"deletar\" id=\"deletar\" type=\"button\" value=\"" + cod + "\">Excluir</button>";
+            piada += "</div>"; //3
 
             piada += "</div>";
+            piada += "</div>"; //3
         }
         return piada;
     }

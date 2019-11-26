@@ -22,7 +22,6 @@ $(document).ready(function () {
         type: "GET",
         data: {"tipo": "carrega_piaUsu"},
         success: function (form) {
-            alert(form);
             $('#piada').empty();
             $('#piada').append(form);
         }
