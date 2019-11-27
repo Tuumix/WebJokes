@@ -25,10 +25,9 @@
                     </div>
                     <input type="text" class="form-control" id="titulo" aria-describedby="basic-addon3">
                 </div>
-                <input class="btn-cad" type="button" placeholder="Cadastrar">
+                <input class="btn-cad" type="button" placeholder=" Cadastrar">
             </div>
         </form>
     </body>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
 </html>
