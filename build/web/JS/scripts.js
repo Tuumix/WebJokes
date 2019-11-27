@@ -17,6 +17,12 @@ function red_piada()
     window.location.replace("cadastro_piadas.jsp")
 }
 
+function red_categoria()
+{
+    window.location.replace("cadastro_categoria.jsp")
+
+}
+
 $(document).ready(function () {
     $.ajax({
         url: "servlet_piada",
@@ -95,7 +101,7 @@ $("#piada").on("click", "#curtir", function () {
     $.ajax({
         url: "servlet_piada",
         type: "GET",
-        data: {codigo: $(this).val(),"tipo":"curtir"},
+        data: {codigo: $(this).val(), "tipo": "curtir"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
@@ -107,7 +113,7 @@ $("#piada").on("click", "#descurtir", function () {
     $.ajax({
         url: "servlet_piada",
         type: "GET",
-        data: {codigo: $(this).val(),"tipo":"descurtir"},
+        data: {codigo: $(this).val(), "tipo": "descurtir"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
@@ -119,7 +125,7 @@ $("#div-btn-categoria").on("click", "#btn-cat", function () {
     $.ajax({
         url: "servlet_piada",
         type: "GET",
-        data: {"codigo_cat": $(this).val(),"tipo":"busc_categoria"},
+        data: {"codigo_cat": $(this).val(), "tipo": "busc_categoria"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);

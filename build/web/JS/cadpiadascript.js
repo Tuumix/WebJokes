@@ -48,7 +48,7 @@ $("body").on("click", ".confirmar", function () {
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
-            alert('Excluído com Sucesso!');
+            alert('Alterado com sucesso!');
         }
     });
 });

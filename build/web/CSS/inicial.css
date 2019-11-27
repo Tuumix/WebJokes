@@ -160,11 +160,13 @@ b{
     font-size: 30px;
 }
 
-#curtir{
-    
+.btn-cad{
+    background-color: lightslategrey;
+    width: 30%;
+    border-end-start-radius: inherit;
+    padding: 0.2%;
+    height: 500px;
+    border-radius: 20px 20px;
+    border: 2px none;
+    box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, .2);
 }
-
-#descurtir{
-    
-}
-

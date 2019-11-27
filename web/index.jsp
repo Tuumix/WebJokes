@@ -20,10 +20,14 @@
             <div class="header-div">
                 <button onclick='excluir_usuario()'>Excluir</button>
                 <%
+                    Usuario usu;
+                    usu = (Usuario) session.getAttribute("usuario");
                     if (session.getAttribute("usuario") != null) {
                         out.println("<button onclick='deslogar()'><i>Log out</i></button>");
                         out.println("<button onclick='red_piada()'><i>Piadas</i></button>");
                     } else {
+                        out.println("<button onclick='red_categoria()'><i>Cadastrar</i></button>");
+
                         out.println("<button onclick='red_form()'><i>Cadastrar</i></button>");
                         out.println("<button onclick='red_login()'><i>Login</i></button>");
                     }
@@ -45,7 +49,7 @@
                         listaC = dalC.getCategorias("");
 
                         for (int i = 0; i < listaC.size(); i++) {
-                            out.println("<button type=\"button\" id=\"btn-cat\" style='border: none;width: 100%;height: 70px;font-size: 30px; background-color:#ced6e0;' value='"+ listaC.get(i).getCod()+"'>" + listaC.get(i).getTitulo() + "</button>");
+                            out.println("<button type=\"button\" id=\"btn-cat\" style='border: none;width: 100%;height: 70px;font-size: 30px; background-color:#ced6e0;' value='" + listaC.get(i).getCod() + "'>" + listaC.get(i).getTitulo() + "</button>");
                         }
                     %>
                 </div>
