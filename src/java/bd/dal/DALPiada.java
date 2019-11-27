@@ -50,8 +50,8 @@ public class DALPiada {
     public ArrayList<Piada> carregaP_Categoria(int cod) {
         ArrayList<Piada> lista = new ArrayList();
         String sql = "select * from piada where cat_cod = $1 order by pia_pontuacao desc";
-        sql = sql.replace("$1", cod+"");
-        System.out.println(""+sql);
+        sql = sql.replace("$1", cod + "");
+        System.out.println("" + sql);
         ResultSet rs = new Conexao().consultar(sql);
         //int cod, int pontucao, String titulo, String texto, String palchave, byte[] foto
         try {
@@ -119,8 +119,17 @@ public class DALPiada {
 
     public boolean decrementa(int codigo, int cod_usu) {
         String sql = "update piada set pia_pontuacao = pia_pontuacao - 1 where pia_cod = " + codigo;
+        return new Conexao().manipular(sql);
+    }
+
+    public boolean alterar_tudo(int codigo, String titulo, String texto, String pal_chave) {
+        String sql = "update piada set pia_titulo = '$1', pia_texto = '$2', pia_palchave = '$3' where pia_cod = " + codigo;
+        sql = sql.replace("$1", titulo);
+        sql = sql.replace("$2", texto);
+        sql = sql.replace("$3", pal_chave);
         System.out.println(""+sql);
         return new Conexao().manipular(sql);
+
     }
 
 }

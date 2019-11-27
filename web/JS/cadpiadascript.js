@@ -24,6 +24,7 @@ $(document).ready(function () {
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
+            $(".form-control").prop("disabled", true);
         }
     });
 });
@@ -31,14 +32,19 @@ $(document).ready(function () {
 $("body").on("click", ".alterar", function () {
     $(this).removeClass('alterar').addClass('confirmar');
     $(this).text('confirmar');
+    $("#titulo".concat($(this).val())).prop("disabled", false);
+    $("#texto".concat($(this).val())).prop("disabled", false);
+    $("#pal-chave".concat($(this).val())).prop("disabled", false);
 });
 
 $("body").on("click", ".confirmar", function () {
-    $(this).removeClass('alterar').addClass('confirmar');
+    var title = "#titulo".concat($(this).val());
+    var text = "#texto".concat($(this).val());
+    var chave = "#pal-chave".concat($(this).val());
     $.ajax({
         url: "servlet_piada",
         type: "GET",
-        data: {"codigo": $(this).val(), "tipo": "deleta_pia"},
+        data: {"codigo": $(this).val(),"titulo": $(title).val(),"texto": $(text).val(),"pal-chave":$(chave).val(), "tipo": "altera_piada"},
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
