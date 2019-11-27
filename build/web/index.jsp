@@ -12,22 +12,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="CSS/inicial.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <link href="CSS/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Sunshiney&display=swap" rel="stylesheet"></head>
     <body>
         <header class="cabecario">
             <button><i class="fa fa-home">Home</i></button>
             <div class="header-div">
-                <button onclick='excluir_usuario()'>Excluir</button>
                 <%
                     Usuario usu;
                     usu = (Usuario) session.getAttribute("usuario");
-                    if (session.getAttribute("usuario") != null) {
+                    if (session.getAttribute("usuario") != null && !usu.isAdm()) {
+                        out.println("<button onclick='deslogar()'><i>Log out</i></button>");
+                        out.println("<button onclick='red_piada()'><i>Piadas</i></button>");
+                    }
+                    if (session.getAttribute("usuario") != null && usu.isAdm()) {
+                        out.println("<div class=\"dropdown\">\n"
+                                + "  <button class=\"btn btn-secondary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n"
+                                + "    Menu\n"
+                                + "  </button>\n"
+                                + "  <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\n"
+                                + "    <button class=\"dropdown-item\" onclick=\"red_categoria()\">Criar Categorias</button>\n"
+                                + "    <button class=\"dropdown-item\" href=\"#\">Excluir Usuario</button>\n"
+                                + "  </div>\n"
+                                + "</div>");
                         out.println("<button onclick='deslogar()'><i>Log out</i></button>");
                         out.println("<button onclick='red_piada()'><i>Piadas</i></button>");
                     } else {
-                        out.println("<button onclick='red_categoria()'><i>Cadastrar</i></button>");
-
                         out.println("<button onclick='red_form()'><i>Cadastrar</i></button>");
                         out.println("<button onclick='red_login()'><i>Login</i></button>");
                     }
@@ -61,5 +71,7 @@
         </form
     </body>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="JS/popper.min.js" type="text/javascript"></script>
+    <script src="JS/bootstrap.js" type="text/javascript"></script>
     <script src="JS/scripts.js" type="text/javascript"></script>
 </html>

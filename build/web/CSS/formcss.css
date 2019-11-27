@@ -70,7 +70,7 @@ form{
     flex-direction: column;
     background-image: linear-gradient(#34495e, #2c3e50);
     width: 35%;
-    height: 50vh;
+    height: 60vh;
     border: 2px none;
     border-radius: 3%;
     box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, .2);
@@ -106,11 +106,6 @@ input{
     width: 130px;
     height: 130px;
     overflow: hidden;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
 }
 
 #profile-container img {
@@ -132,8 +127,6 @@ input{
     width: 100%;
     height: 200px;
     overflow: hidden;
-    border-radius: 20px 20px;
-    border: 2px none;
 }
 
 #piada-container img {

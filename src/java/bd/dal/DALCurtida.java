@@ -24,7 +24,11 @@ public class DALCurtida {
     }
 
     public boolean apagar(int id, int codigo_usu) {
-        return new Conexao().manipular("delete from curtidas where codigo_piada = " + id + " and codigo_usu = "+codigo_usu);
+        return new Conexao().manipular("delete from curtidas where codigo_piada = " + id + " and codigo_usu = " + codigo_usu);
+    }
+
+    public boolean apagarPia(int codigoP) {
+        return new Conexao().manipular("delete from curtidas where codigo_piada = " + codigoP);
     }
 
     public Curtida getCurtida(int codigoP, int codigoU) {

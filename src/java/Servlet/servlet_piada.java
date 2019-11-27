@@ -165,6 +165,9 @@ public class servlet_piada extends HttpServlet {
                 piada += "<b>" + lista.get(i).getTitulo() + "</b><br><br>";
                 piada += "<p>" + lista.get(i).getTexto() + "</p><br>";
                 piada += "<p>Pontuação:" + lista.get(i).getPontucao() + "</p><br>";
+                piada += "<div id=\"profile-container\" style=\"margin-bottom: 20px;background-color:pink;\">\n"
+                        + "<image id=\"profileImage\" src=\"fotos_piadas/" + lista.get(i).getCod() + ".jpg\"/>teste\n"
+                        + "</div>";//3
                 piada += "</div>";
             }
         }
@@ -218,7 +221,7 @@ public class servlet_piada extends HttpServlet {
         for (int i = 0; i < lista.size(); i++) {
             cod = lista.get(i).getCod();
             path = path.replace("$1", lista.get(i).getCod() + "");
-            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;margin-right:10px;\">";
+            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;margin-right:10px;margin-bottom:10px;\">";
             piada += "<div style=\"display: flex;flex-direction: column;align-content: center;justify-content:center;align-items:center;width: 50%;height: 25vh;border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;\">";
 
             piada += "<div class=\"input-group mb-3\" style=\"width:350px;\">"
@@ -246,11 +249,11 @@ public class servlet_piada extends HttpServlet {
             piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
             piada += "<button class=\"deletar\" id=\"deletar\" type=\"button\" value=\"" + cod + "\">Excluir</button>";
             piada += "</div>";
-            piada += "                <div id=\"profile-container\" style=\"margin-bottom: 20px;\">\n"
-                    + "                    <img id=\"profileImage\" src=\"/web/fotos_piadas/" + lista.get(i).getCod() + ".jpg\" />\n"
-                    + "               </div>";
             piada += "</div>";
-            piada += "</div>"; //3
+            piada += "<div id=\"profile-container\" style=\"display:flex;align-items:center;align-content:center;margin-bottom: 50px;margin-left:100px;background-color:pink;\">\n"
+                    + "<image id=\"profileImage\" src=\"fotos_piadas/" + lista.get(i).getCod() + ".jpg\"/>\n"
+                    + "</div>";//3
+            piada += "</div>";
             path = path.replace(lista.get(i).getCat_cod() + "", "$1");
         }
         return piada;
@@ -258,16 +261,18 @@ public class servlet_piada extends HttpServlet {
 
     public String deleta_piada(Usuario usu, int codigoP) {
         DALPiada dalP = new DALPiada();
+        DALCurtida dalC = new DALCurtida();
         String piada = "";
         int cod;
         ArrayList<Piada> lista = new ArrayList();
+        dalC.apagarPia(codigoP);
         dalP.apagar(codigoP);
+        lista.clear();
         lista = dalP.carrega_piadaUsu(usu.getCod());
         for (int i = 0; i < lista.size(); i++) {
             cod = lista.get(i).getCod();
-            cod = lista.get(i).getCod();
-            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;margin-right:10px;\">";
-            piada += "<div style=\"display: flex;flex-direction: column;align-content: flex-start;width: 40%;height: 30vh;\">";
+            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;margin-right:10px;margin-bottom:10px;\">";
+            piada += "<div style=\"display: flex;flex-direction: column;align-content: center;justify-content:center;align-items:center;width: 50%;height: 25vh;border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;\">";
 
             piada += "<div class=\"input-group mb-3\" style=\"width:350px;\">"
                     + "  <div class=\"input-group-prepend\">"
@@ -293,10 +298,12 @@ public class servlet_piada extends HttpServlet {
             piada += "<div style=\"display:flex;align-items:center:flex-direction:column;\">"; //3
             piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
             piada += "<button class=\"deletar\" id=\"deletar\" type=\"button\" value=\"" + cod + "\">Excluir</button>";
-            piada += "</div>"; //3
-
             piada += "</div>";
-            piada += "</div>"; //3
+            piada += "</div>";
+            piada += "<div id=\"profile-container\" style=\"display:flex;align-items:center;align-content:center;margin-bottom: 50px;margin-left:100px;background-color:pink;\">\n"
+                    + "<image id=\"profileImage\" src=\"fotos_piadas/" + lista.get(i).getCod() + ".jpg\"/>\n"
+                    + "</div>";//3
+            piada += "</div>";
         }
         return piada;
     }
@@ -372,39 +379,39 @@ public class servlet_piada extends HttpServlet {
             lista = dalP.carrega_piadaUsu(usu_cod);
             for (int i = 0; i < lista.size(); i++) {
                 cod = lista.get(i).getCod();
-                piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;margin-right:10px;\">";
-                piada += "<div style=\"display: flex;flex-direction: column;align-content: center;justify-content:center;align-items:center;width: 50%;height: 25vh;border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;\">";
+            piada += "<div style=\"display: flex;flex-direction: row;align-content: flex-start;width: 100%;height: 30vh;margin-right:10px;margin-bottom:10px;\">";
+            piada += "<div style=\"display: flex;flex-direction: column;align-content: center;justify-content:center;align-items:center;width: 50%;height: 25vh;border-bottom:2px solid;border-bottom-color: #2c3e50;border-bottom-width: 3px;\">";
 
-                piada += "<div class=\"input-group mb-3\" style=\"width:350px;\">"
-                        + "  <div class=\"input-group-prepend\">"
-                        + "    <span class=\"input-group-text\" id=\"basic-addon3\">Titulo</span>"
-                        + "  </div>"
-                        + "  <input type=\"text\" class=\"form-control\" id=\"titulo" + lista.get(i).getCod() + "\" aria-describedby=\"basic-addon3\" value=\"" + lista.get(i).getTitulo() + "\">"
-                        + "</div>";
+            piada += "<div class=\"input-group mb-3\" style=\"width:350px;\">"
+                    + "  <div class=\"input-group-prepend\">"
+                    + "    <span class=\"input-group-text\" id=\"basic-addon3\">Titulo</span>"
+                    + "  </div>"
+                    + "  <input type=\"text\" class=\"form-control\" id=\"titulo" + lista.get(i).getCod() + "\" aria-describedby=\"basic-addon3\" value=\"" + lista.get(i).getTitulo() + "\">"
+                    + "</div>";
 
-                piada += "<div class=\"input-group\" style=\"width:350px;margin-bottom:30px;\">"
-                        + "  <div class=\"input-group-prepend\">"
-                        + "    <span class=\"input-group-text\">Piada</span>"
-                        + "  </div>"
-                        + "  <textarea class=\"form-control\" id=\"texto" + lista.get(i).getCod() + "\" aria-label=\"With textarea\" disable>" + lista.get(i).getTexto() + "</textarea>"
-                        + "</div>";
+            piada += "<div class=\"input-group\" style=\"width:350px;margin-bottom:30px;\">"
+                    + "  <div class=\"input-group-prepend\">"
+                    + "    <span class=\"input-group-text\">Piada</span>"
+                    + "  </div>"
+                    + "  <textarea class=\"form-control\" id=\"texto" + lista.get(i).getCod() + "\" aria-label=\"With textarea\" disable>" + lista.get(i).getTexto() + "</textarea>"
+                    + "</div>";
 
-                piada += "<div class=\"input-group mb-3\" style=\"width:350px;\">"
-                        + "  <div class=\"input-group-prepend\">"
-                        + "    <span class=\"input-group-text\" id=\"basic-addon3\">Palavra Chave</span>"
-                        + "  </div>"
-                        + "  <input type=\"text\" class=\"form-control\" id=\"pal-chave" + lista.get(i).getCod() + "\" aria-describedby=\"basic-addon3\" value=\"" + lista.get(i).getPalchave() + "\" >"
-                        + "</div>";
+            piada += "<div class=\"input-group mb-3\" style=\"width:350px;\">"
+                    + "  <div class=\"input-group-prepend\">"
+                    + "    <span class=\"input-group-text\" id=\"basic-addon3\">Palavra Chave</span>"
+                    + "  </div>"
+                    + "  <input type=\"text\" class=\"form-control\" id=\"pal-chave" + lista.get(i).getCod() + "\" aria-describedby=\"basic-addon3\" value=\"" + lista.get(i).getPalchave() + "\" >"
+                    + "</div>";
 
-                piada += "<div style=\"display:flex;align-items:center:flex-direction:column;\">"; //3
-                piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
-                piada += "<button class=\"deletar\" id=\"deletar\" type=\"button\" value=\"" + cod + "\">Excluir</button>";
-                piada += "</div>";
-                piada += "                <div id=\"profile-container\" style=\"margin-bottom: 20px;\">\n"
-                        + "                    <img id=\"profileImage\" src=\"/web/fotos_piadas/" + lista.get(i).getCod() + ".jpg\" />\n"
-                        + "               </div>";
-                piada += "</div>";
-                piada += "</div>"; //3
+            piada += "<div style=\"display:flex;align-items:center:flex-direction:column;\">"; //3
+            piada += "<button class=\"alterar\" id=\"alterar\" type=\"button\" value=\"" + cod + "\">Alterar</button>";
+            piada += "<button class=\"deletar\" id=\"deletar\" type=\"button\" value=\"" + cod + "\">Excluir</button>";
+            piada += "</div>";
+            piada += "</div>";
+            piada += "<div id=\"profile-container\" style=\"display:flex;align-items:center;align-content:center;margin-bottom: 50px;margin-left:100px;background-color:pink;\">\n"
+                    + "<image id=\"profileImage\" src=\"fotos_piadas/" + lista.get(i).getCod() + ".jpg\"/>\n"
+                    + "</div>";//3
+            piada += "</div>";
             }
         }
         return piada;

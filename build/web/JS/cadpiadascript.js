@@ -48,6 +48,7 @@ $("body").on("click", ".confirmar", function () {
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
+            $(".form-control").prop("disabled", true);
             alert('Alterado com sucesso!');
         }
     });

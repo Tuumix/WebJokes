@@ -42,7 +42,7 @@
             <button class="btn btn-outline-success">Cadastrar</button>
             <br><br>
         </form>
-        <div id="piada" style="display: flex;align-content: center;align-content: center;flex-direction: column;width: 50%;height: 50vh;background-color: lightslategray;overflow:auto;">
+        <div id="piada" style="display: flex;align-content: center;align-content: center;flex-direction: column;width: 50%;height: 60vh;background-color: lightslategray;overflow:auto;">
             <div id="piada"></div>
         </div>
     </main>

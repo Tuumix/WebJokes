@@ -9,11 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="CSS/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="CSS/inicial.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <header class="cabecario"></header>
+        <header class="cabecario">
+            <button><i class="fa fa-home">Home</i></button>
+        </header>
         <form style="display: flex;align-content: center;align-items: center;width: 100%;height: 940px;flex-direction: column;justify-content: center;background-image: linear-gradient(#34495e, #2c3e50);">
             <div class="formulario">
                 <div class="input-group mb-3" style="width:350px;">

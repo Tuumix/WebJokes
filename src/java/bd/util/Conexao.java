@@ -15,7 +15,7 @@ public class Conexao {
     private String erro = "";
 
     public Conexao() {
-        this("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/", "piadas", "postgres", "postgres123");
+        this("org.postgresql.Driver", "jdbc:postgresql://localhost:5433/", "piadas", "postgres", "postgres123");
     }
    
 
