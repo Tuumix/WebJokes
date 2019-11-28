@@ -51,7 +51,6 @@ public class DALPiada {
         ArrayList<Piada> lista = new ArrayList();
         String sql = "select * from piada where cat_cod = $1 order by pia_pontuacao desc";
         sql = sql.replace("$1", cod + "");
-        System.out.println("" + sql);
         ResultSet rs = new Conexao().consultar(sql);
         //int cod, int pontucao, String titulo, String texto, String palchave, byte[] foto
         try {

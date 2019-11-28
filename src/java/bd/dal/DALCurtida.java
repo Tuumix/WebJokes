@@ -27,6 +27,10 @@ public class DALCurtida {
         return new Conexao().manipular("delete from curtidas where codigo_piada = " + id + " and codigo_usu = " + codigo_usu);
     }
 
+    public boolean apag_usuario(int codigo_usu) {
+        return new Conexao().manipular("delete from curtidas where codigo_usu = " + codigo_usu);
+    }
+
     public boolean apagarPia(int codigoP) {
         return new Conexao().manipular("delete from curtidas where codigo_piada = " + codigoP);
     }

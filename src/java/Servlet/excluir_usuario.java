@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import bd.dal.DALCurtida;
+import bd.dal.DALPiada;
 import bd.dal.DALUsuario;
 import bd.entidades.Usuario;
 import java.io.IOException;
@@ -20,12 +22,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Aluno
  */
-@WebServlet(name = "excluir_usuario", urlPatterns =
-{
-    "/excluir_usuario"
-})
-public class excluir_usuario extends HttpServlet
-{
+@WebServlet(name = "excluir_usuario", urlPatterns
+        = {
+            "/excluir_usuario"
+        })
+public class excluir_usuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,18 +38,29 @@ public class excluir_usuario extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
+        try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false);
             DALUsuario dalusr = new DALUsuario();
-            Usuario usu = (Usuario)session.getAttribute("usuario");
-            dalusr.delete_usr(usu.getCod());
-            session.invalidate();
-        }catch(Exception e){
-            System.out.println(""+e);
+            DALPiada dalpia = new DALPiada();
+            String nome = request.getParameter("nome");
+            Usuario usu =  new Usuario();
+            usu = dalusr.busca_usr(nome);
+            
+            if(usu == null)
+                out.println("nao existe");
+            if(usu.isAdm())
+                out.println("Não é possível excluir o administrador");
+            if (dalpia.carrega_piadaUsu(usu.getCod()).size() == 0) {
+                DALCurtida dalC = new DALCurtida();
+                dalC.apag_usuario(usu.getCod());
+                dalusr.delete_usr(usu.getCod());
+            } else {
+                out.println("Usuario possui piadas registradas");
+            }
+        } catch (Exception e) {
+            System.out.println("" + e);
         }
     }
 
@@ -63,8 +75,7 @@ public class excluir_usuario extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -78,8 +89,7 @@ public class excluir_usuario extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -89,8 +99,7 @@ public class excluir_usuario extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

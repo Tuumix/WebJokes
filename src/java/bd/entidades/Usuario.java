@@ -68,8 +68,6 @@ public class Usuario
         this.foto = foto;
     }
 
-
-
     public boolean isAdm() {
         return adm;
     }

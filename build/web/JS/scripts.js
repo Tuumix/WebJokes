@@ -9,18 +9,22 @@ function red_index()
 
 function red_form()
 {
-    window.location.replace("formulario.html")
+    window.location.replace("formulario.html");
 }
 
 function red_piada()
 {
-    window.location.replace("cadastro_piadas.jsp")
+    window.location.replace("cadastro_piadas.jsp");
 }
 
 function red_categoria()
 {
-    window.location.replace("cadastro_categoria.jsp")
+    window.location.replace("cadastro_categoria.jsp");
+}
 
+function red_usuario()
+{
+    window.location.replace("excluir_usuario.jsp");
 }
 
 $(document).ready(function () {
@@ -43,7 +47,7 @@ function autenticar() {
         data: {email: $('#email').val(), senha: $('#senha').val()},
         success: function (form) {
             if (!form) {
-                $('body').load("index.jsp")
+                $('body').load("index.jsp");
             } else
                 $("#erro").html(form);
         }
@@ -55,7 +59,7 @@ function deslogar() {
         url: "deslogar_sessao",
         type: "GET",
         success: function () {
-            window.location.replace("index.jsp")
+            window.location.replace("index.jsp");
         }
     });
 }
@@ -65,7 +69,7 @@ function excluir_usuario() {
         url: "excluir_usuario",
         type: "GET",
         success: function () {
-            window.location.replace("index.jsp")
+            window.location.replace("index.jsp");
         }
     });
 }
@@ -129,6 +133,31 @@ $("#div-btn-categoria").on("click", "#btn-cat", function () {
         success: function (form) {
             $('#piada').empty();
             $('#piada').append(form);
+        }
+    });
+});
+
+$('body').on("click", ".btn-cad", function(){
+        $.ajax({
+        url: "servlet_categoria",
+        type: "POST",
+        data:{"descricao":$("#titulo").val()},
+        success: function () {
+            alert('sucesso')
+        }
+    });
+});
+
+$('body').on("click", ".btn-del", function(){
+        $.ajax({
+        url: "excluir_usuario",
+        type: "POST",
+        data:{"nome":$("#usuario").val()},
+        success: function (form) {
+            if(!form)
+                alert('sucesso');
+            else
+                $('#resul').append(form);
         }
     });
 });

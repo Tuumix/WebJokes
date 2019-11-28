@@ -15,7 +15,7 @@
     </head>
     <body>
         <header class="cabecario">
-            <button><i class="fa fa-home">Home</i></button>
+            <button onclick="red_index()"><i class="fa fa-home">Home</i></button>
         </header>
         <form style="display: flex;align-content: center;align-items: center;width: 100%;height: 940px;flex-direction: column;justify-content: center;background-image: linear-gradient(#34495e, #2c3e50);">
             <div class="formulario">
@@ -25,9 +25,10 @@
                     </div>
                     <input type="text" class="form-control" id="titulo" aria-describedby="basic-addon3">
                 </div>
-                <input class="btn-cad" type="button" placeholder=" Cadastrar">
+                <input class="btn-cad" type="button" value="Cadastrar">
             </div>
         </form>
     </body>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="JS/scripts.js" type="text/javascript"></script>
 </html>

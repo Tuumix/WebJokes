@@ -56,8 +56,6 @@ public class cadastra_pia extends HttpServlet {
                     foto.getInputStream().read(imagem);
                     // cria um arquivo com o mesmo nome da foto e grava o vetor como seu conteúdo
                     FileOutputStream arquivo = new FileOutputStream(new File(getServletContext().getRealPath("/") + "/" + "fotos_piadas/" + dalpia.pegacodigo() + ".jpg"));
-                    String caminho = getServletContext().getRealPath("/") + "/" + "fotos_piadas/" + dalpia.pegacodigo() + ".jpg";
-                    System.out.println("Caminho : "+caminho);
                     arquivo.write(imagem);
                     arquivo.close();
                     response.sendRedirect("cadastro_piadas.jsp");

@@ -32,13 +32,14 @@
                                 + "  </button>\n"
                                 + "  <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\n"
                                 + "    <button class=\"dropdown-item\" onclick=\"red_categoria()\">Criar Categorias</button>\n"
-                                + "    <button class=\"dropdown-item\" href=\"#\">Excluir Usuario</button>\n"
+                                + "    <button class=\"dropdown-item\" onclick=\"red_usuario()\">Excluir Usuario</button>\n"
                                 + "  </div>\n"
                                 + "</div>");
+                        out.println("<button onclick='red_form()'><i>Cadastrar</i></button>");
                         out.println("<button onclick='deslogar()'><i>Log out</i></button>");
                         out.println("<button onclick='red_piada()'><i>Piadas</i></button>");
-                    } else {
-                        out.println("<button onclick='red_form()'><i>Cadastrar</i></button>");
+                    } 
+                    if(session.getAttribute("usuario") == null){
                         out.println("<button onclick='red_login()'><i>Login</i></button>");
                     }
                 %>

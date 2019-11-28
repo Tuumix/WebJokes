@@ -84,6 +84,22 @@ public class DALUsuario
         }
         return u;
     }
+    
+    public Usuario busca_usr(String nome)
+    {
+        Usuario u = null;
+        String sql = "select * from usuario where usu_nome = " + "'"+ nome+"'";
+        ResultSet rs = new Conexao().consultar(sql);
+        try
+        {
+            if (rs.next())
+                u = new Usuario(rs.getString("usu_nome"), rs.getString("usu_email"), rs.getString("usu_senha"), rs.getBytes("usu_foto"), rs.getBoolean("usu_adm"), rs.getInt("usu_cod"));
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        return u;
+    }
 
     public Usuario valida_usu(String email, String senha)
     {

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class DALCategoria 
 {
-    public boolean salvar(Categoria c) {
-        String sql = "insert into categoria (cat_cod,cat_titulo) values ('$1','$2')";
-        sql = sql.replace("$1", c.getCod()+"");
-        sql = sql.replace("$2", c.getTitulo());
+    public boolean salvar(String descricao) {
+        String sql = "insert into categoria (cat_titulo) values('$2')";
+        sql = sql.replace("$2", descricao);
+        System.out.println(""+sql);
         return new Conexao().manipular(sql);
     }
     
